@@ -14,7 +14,9 @@ module Healthcheck
 
     private
       def body
-        { commit: ENV['GIT_COMMIT'].to_s }
+        _body = { status: 'ok' }
+        _body[:commit] = ENV['GIT_COMMIT'].to_s unless ENV['GIT_COMMIT'].blank?
+        _body
       end
   end
 end
